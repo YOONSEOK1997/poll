@@ -22,7 +22,7 @@ public class QuestionDao {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 
-		try {
+	
 			// MySQL 연결
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/poll", "root", "wkqk1234");
 			
@@ -43,11 +43,7 @@ public class QuestionDao {
 				question.setType(rs.getInt("type"));
 				list.add(question);
 			}
-		} finally {
-			if (rs != null) rs.close();
-			if (stmt != null) stmt.close();
-			if (conn != null) conn.close();
-		}
+		
 		return list;
 	}
 
@@ -59,7 +55,7 @@ public class QuestionDao {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 
-		try {
+	
 			// MySQL 연결
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/poll", "root", "wkqk1234");
 
@@ -78,11 +74,8 @@ public class QuestionDao {
 			if (rs.next()) {
 				pk = rs.getInt(1);
 			}
-		} finally {
-			if (rs != null) rs.close();
-			if (stmt != null) stmt.close();
-			if (conn != null) conn.close();
-		}
+		
+		
 		return pk;
 	}
 }
