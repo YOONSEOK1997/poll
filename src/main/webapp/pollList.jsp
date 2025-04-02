@@ -76,7 +76,10 @@
             <% } %>
         </table>
         <div class="pagination">
-            <% int prevPage = (currentPage > 1) ? currentPage - 1 : 1; %>
+            <% int prevPage = 1;
+               if (currentPage > 1) {
+                   prevPage = currentPage - 1;
+               } %>
             <% int nextPage = currentPage + 1; %>
             <a href="?currentPage=<%= prevPage %>">이전</a>
             <a href="?currentPage=<%= nextPage %>">다음</a>
