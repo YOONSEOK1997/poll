@@ -40,19 +40,11 @@
         <%
             int no = (currentPage - 1) * rowPerPage + 1;
             for (QuestionDto q : list) {
-                boolean isInRange = q.getStartdate().compareTo(today) <= 0 && today.compareTo(q.getEnddate()) <= 0;
+              
         %>
         <tr>
             <td><%= no++ %></td>
-            <td>
-                <% if (isInRange) { %>
-                    <!-- 링크로 표시 -->
-                    <a href="vote.jsp?num=<%= q.getNum() %>"><%= q.getTitle() %></a>
-                <% } else { %>
-                    <!-- 그냥 텍스트로 표시 -->
-                    <%= q.getTitle() %>
-                <% } %>
-            </td>
+            <td> <a href="vote.jsp?num=<%= q.getNum() %>"><%= q.getTitle() %></a> </td>
             <td><%= q.getStartdate() %></td>
             <td><%= q.getEnddate() %></td>
             <td><%= q.getType() %></td>
