@@ -49,26 +49,29 @@
                 <th>Start Date</th>
                 <th>End Date</th>
                 <th>Type</th>
+                <th>Vote</th>
             </tr>
-        <%
-            int no = (currentPage - 1) * rowPerPage + 1;
-            for (QuestionDto q : list) {
-                boolean isInRange = q.getStartdate().compareTo(today) <= 0 && today.compareTo(q.getEnddate()) <= 0;
-        %>
-        <tr>
-            <td><%= no++ %></td>
-            <td>
-                <% if (isInRange) { %>
-                    <!-- 링크로 표시 -->
-                    <a href="vote.jsp?num=<%= q.getNum() %>"><%= q.getTitle() %></a>
-                <% } else { %>
-                    <!-- 그냥 텍스트로 표시 -->
-                    <%= q.getTitle() %>
-                <% } %>
-            </td>
-            <td><%= q.getStartdate() %></td>
-            <td><%= q.getEnddate() %></td>
-            <td><%= q.getType() %></td>
+            <% int no = (currentPage - 1) * rowPerPage + 1;
+               for (QuestionDto q : list) {
+                   boolean isBeforeStart = today.compareTo(q.getStartdate()) < 0;
+                   boolean isInRange = q.getStartdate().compareTo(today) <= 0 && today.compareTo(q.getEnddate()) <= 0;
+                   boolean isAfterEnd = today.compareTo(q.getEnddate()) > 0;
+            %>
+            <tr>
+                <td><%= no++ %></td>
+                <td><%= q.getTitle() %></td>
+                <td><%= q.getStartdate() %></td>
+                <td><%= q.getEnddate() %></td>
+                <td><%= q.getType() %></td>
+                <td>
+                    <% if (isBeforeStart) { %>
+                        투표 시작 전
+                    <% } else if (isInRange) { %>
+                        <a href="vote.jsp?num=<%= q.getNum() %>">투표하기</a>
+                    <% } else if (isAfterEnd) { %>
+                        투표 종료
+                    <% } %>
+                </td>
             </tr>
             <% } %>
         </table>
