@@ -78,7 +78,7 @@ public class QuestionDao {
 		
 		return pk;
 	}
-	
+	//상세페이지 (미구현)
 	public QuestionDto selectQuestionByNum(int num) throws SQLException {
 	    QuestionDto question = null;
 	    Connection conn = null;
