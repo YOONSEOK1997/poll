@@ -78,4 +78,31 @@ public class QuestionDao {
 		
 		return pk;
 	}
+	
+	public QuestionDto selectQuestionByNum(int num) throws SQLException {
+	    QuestionDto question = null;
+	    Connection conn = null;
+	    PreparedStatement pstmt = null;
+	    ResultSet rs = null;
+
+	  
+				conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/poll", "root", "wkqk1234");
+	        String sql = "SELECT * FROM question WHERE num = ?";
+	        pstmt = conn.prepareStatement(sql);
+	        pstmt.setInt(1, num);
+	        rs = pstmt.executeQuery();
+
+	        if (rs.next()) {
+	            question = new QuestionDto();
+	            question.setNum(rs.getInt("num"));
+	            question.setTitle(rs.getString("title"));
+	           // question.setContent(rs.getContent("content"));
+	            question.setStartdate(rs.getString("startdate"));
+	            question.setEnddate(rs.getString("enddate"));
+	            question.setType(rs.getInt("type"));
+	        }
+	 
+	    return question;
+	}
+
 }
