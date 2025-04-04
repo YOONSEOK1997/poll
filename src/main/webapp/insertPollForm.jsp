@@ -6,7 +6,7 @@
 <title>insertPollForm</title>
 </head>
 <body>
-	<h1>투표프로그램</h1>
+	<h1>설문조사</h1>
 	
 	<hr>
 	<h2>설문작성</h2>
@@ -40,7 +40,7 @@
 			<tr>
 				<td>복수투표</td>
 				<td>
-					<input type="radio" name="type" value="1">yes
+					<input type="radio" name="type" value="1" >yes
 					<input type="radio" name="type" value="0">no
 				</td>
 			</tr>

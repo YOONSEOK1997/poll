@@ -7,8 +7,9 @@ public class QuestionDto {
 	private String enddate;
 	private String createdate;
 	private int type;
-
-
+	private int totalCount;
+	
+	
 	public int getNum() {
 		return num;
 	}
@@ -45,5 +46,13 @@ public class QuestionDto {
 	public void setType(int type) {
 		this.type = type;
 	}
+	public int getTotalCount() {
+	    return totalCount;
+	}
+
+	public void setTotalCount(int totalCount) {
+	    this.totalCount = totalCount;
+	}
+
 
 }

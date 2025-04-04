@@ -10,7 +10,7 @@
 	String startdate = request.getParameter("startdate");
 	String enddate = request.getParameter("enddate");
 	int type = Integer.parseInt(request.getParameter("type"));
-	
+
 	// item.content
 	String[] content = request.getParameterValues("content");
 	// 공백요소를 제거 후 새로운 배열(ArrayList<String>)에 저장
