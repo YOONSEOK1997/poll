@@ -17,82 +17,104 @@
 %>
 
 
-
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
-<meta charset="UTF-8">
-<title>투표 결과</title>
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script type="text/javascript">
-    google.charts.load("current", {packages:["corechart"]});
-    google.charts.setOnLoadCallback(drawChart);
-
-    function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-            ['항목', '투표 수'],
-            <% for(ItemDto i : itemList) { %>
-                ['<%=i.getContent()%>', <%=i.getCount()%>],
-            <% } %>
-        ]);
-
-        var options = {
-            title: '투표 결과',
-            chartArea: {width: '60%'},
-        };
-
-        var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
-        chart.draw(data, options);
-    }
-</script>
-<style>
-    .container {
-        width: 80%;
-        max-width: 800px;
-        margin: 50px auto; 
-        text-align: center;
-    }
+    <meta charset="UTF-8">
+    <title>투표 결과</title>
     
+    <!-- Bootstrap CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin: 20px 0;
-    }
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    th, td {
-        border: 1px solid #ddd;
-        padding: 8px;
-        text-align: center;
-    }
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var ctx = document.getElementById('voteChart').getContext('2d');
+            var voteChart = new Chart(ctx, {
+                type: 'bar', // 막대 그래프 (다른 타입: 'pie', 'doughnut', 'line' 등)
+                data: {
+                    labels: [
+                        <% for(ItemDto i : itemList) { %>
+                            "<%=i.getContent()%>",
+                        <% } %>
+                    ],
+                    datasets: [{
+                        label: '투표 수',
+                        data: [
+                            <% for(ItemDto i : itemList) { %>
+                                <%=i.getCount()%>,
+                            <% } %>
+                        ],
+                        backgroundColor: 'rgba(54, 162, 235, 0.6)', // 막대 색상
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: { display: true, text: "투표 수" }
+                        },
+                        x: {
+                            title: { display: true, text: "항목" }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
 
-    th {
-        background-color: #f4f4f4;
-    }
+    <style>
+        /* 전체 컨테이너 가운데 정렬 */
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            text-align: center;
+        }
 
-   
-    #chart_div {
-        width: 100%;
-        height: 400px;
-        margin: 0 auto; 
-    }
-</style>
+        /* 캔버스 크기 조정 */
+        #chart-container {
+            width: 100%;
+            height: 400px;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <h1><%=qnum%>번 설문 투표결과</h1>
+        <h1 class="mt-4"><%=qnum%>번 설문 투표결과</h1>
 
-        <table>
-            <tr>
-                <td colspan="4"><strong>Q : <%=question.getTitle()%></strong></td>
-            </tr>
-            <tr>
-                <td colspan="4"><strong>총 투표수 : <%=totalCount%></strong></td>
-            </tr>
+        <table class="table table-bordered mt-4">
+            <thead class="table-light">
+                <tr>
+                    <th>번호</th>
+                    <th>내용</th>
+                    <th>투표 수</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for(ItemDto i : itemList) { %>
+                    <tr>
+                        <td><%=i.getInum()%></td>
+                        <td><%=i.getContent()%></td>
+                        <td><%=i.getCount()%></td>
+                    </tr>
+                <% } %>
+            </tbody>
         </table>
 
         <!-- 차트 출력 -->
-        <div id="chart_div"></div>
+        <div id="chart-container">
+            <canvas id="voteChart"></canvas>
+        </div>
     </div>
+
+ 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
