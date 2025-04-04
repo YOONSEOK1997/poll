@@ -1,8 +1,9 @@
 <%@page import="java.util.ArrayList"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import = "dto.*" %>
-<%@ page import = "model.*" %>
-<%@ page import = "java.util.*"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ page import="dto.*"%>
+<%@ page import="model.*"%>
+<%@ page import="java.util.*"%>
 <%
 	// controller(1.요청값 분석, 2.모델 호출)
 	// 1.요청값 분석

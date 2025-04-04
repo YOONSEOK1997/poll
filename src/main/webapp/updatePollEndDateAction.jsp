@@ -5,6 +5,7 @@
 <%
     String enddate = request.getParameter("enddate");
     int num = Integer.parseInt(request.getParameter("num"));  
+  
     QuestionDto questionDto = new QuestionDto();
     questionDto.setEnddate(enddate);
     questionDto.setNum(num);  

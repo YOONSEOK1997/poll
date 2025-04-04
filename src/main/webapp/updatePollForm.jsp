@@ -5,7 +5,7 @@
 <%
 int num = Integer.parseInt(request.getParameter("num"));
 QuestionDao questionDao = new QuestionDao();
-QuestionDto questionDto = questionDao.selectQuestionByNum(num); // 여기 수정!
+QuestionDto questionDto = questionDao.selectQuestionByNum(num); 
 ItemDao itemDao = new ItemDao();
 ArrayList<ItemDto> items = itemDao.selectItem(num);
 int i = 1;

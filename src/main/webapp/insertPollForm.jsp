@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,16 +8,14 @@
 </head>
 <body>
 	<h1>설문조사</h1>
-	
+
 	<hr>
 	<h2>설문작성</h2>
 	<form method="post" action="/poll/insertPollAction.jsp">
 		<table border="1">
 			<tr>
 				<td>질문</td>
-				<td colspan="2">
-					<input type="text" name="title">
-				</td>
+				<td colspan="2"><input type="text" name="title"></td>
 			</tr>
 			<tr>
 				<td rowspan="8">항목</td>
@@ -27,8 +26,8 @@
 				<td>3) <input type="text" name="content"></td>
 				<td>4) <input type="text" name="content"></td>
 			</tr>
-			
-		              
+
+
 			<tr>
 				<td>시작일</td>
 				<td><input type="date" name="startdate"></td>
@@ -39,10 +38,8 @@
 			</tr>
 			<tr>
 				<td>복수투표</td>
-				<td>
-					<input type="radio" name="type" value="1" >yes
-					<input type="radio" name="type" value="0">no
-				</td>
+				<td><input type="radio" name="type" value="1">yes <input
+					type="radio" name="type" value="0">no</td>
 			</tr>
 		</table>
 		<button type="submit">작성하기</button>

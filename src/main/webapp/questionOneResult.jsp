@@ -27,7 +27,7 @@
 </head>
 <body>
 	<h1><%=qnum%>번 설문 투표결과</h1>
-	<table border="1" width="80%">
+	<table border="1">
 		<tr>
 			<td colspan="4">
 				Q : <%=question.getTitle()%>

@@ -18,9 +18,7 @@
             <tr>
                 <td>종료일</td>
                 <td><input type="date" name="enddate"></td>
-            </tr>
-            <!-- num 값을 Hidden 필드로 전달 -->
-          
+            </tr> 
         </table>
         
         <button type="submit">수정</button>
