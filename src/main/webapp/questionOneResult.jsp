@@ -18,53 +18,81 @@
 
 
 
-<!-- View -->
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title></title>
+<title>투표 결과</title>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+    google.charts.load("current", {packages:["corechart"]});
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+            ['항목', '투표 수'],
+            <% for(ItemDto i : itemList) { %>
+                ['<%=i.getContent()%>', <%=i.getCount()%>],
+            <% } %>
+        ]);
+
+        var options = {
+            title: '투표 결과',
+            chartArea: {width: '60%'},
+        };
+
+        var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+    }
+</script>
+<style>
+    .container {
+        width: 80%;
+        max-width: 800px;
+        margin: 50px auto; 
+        text-align: center;
+    }
+    
+    
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: center;
+    }
+
+    th {
+        background-color: #f4f4f4;
+    }
+
+   
+    #chart_div {
+        width: 100%;
+        height: 400px;
+        margin: 0 auto; 
+    }
+</style>
 </head>
 <body>
-	<h1><%=qnum%>번 설문 투표결과</h1>
-	<table border="1">
-		<tr>
-			<td colspan="4">
-				Q : <%=question.getTitle()%>
-			</td>
-		</tr>
-		<tr>
-			<td colspan="4">
-				총 투표수 : <%=totalCount%>
-			</td>
-		</tr>
-		<tr>
-			<td>번호</td><td>내용</td><td>카운트(차트)</td><td>카운트</td>
-		</tr>
-		
-		<%
-			for(ItemDto i : itemList) {
-		%>
-				<tr>
-					<td><%=i.getInum()%></td>
-					<td><%=i.getContent()%></td>
-					<td>
-						<!-- 각 count값에 대한 백분율 값 -->
-						<%
-							int percentage = (int)(Math.round((double)i.getCount() / (double)totalCount * 100));
-							
-							for(int n=1; n<=percentage; n=n+1) {
-						%>
-								*
-						<%
-							}
-						%>
-					</td>
-					<td><%=i.getCount()%></td>
-				</tr>
-		<%		
-			}
-		%>
-	</table>
+    <div class="container">
+        <h1><%=qnum%>번 설문 투표결과</h1>
+
+        <table>
+            <tr>
+                <td colspan="4"><strong>Q : <%=question.getTitle()%></strong></td>
+            </tr>
+            <tr>
+                <td colspan="4"><strong>총 투표수 : <%=totalCount%></strong></td>
+            </tr>
+        </table>
+
+        <!-- 차트 출력 -->
+        <div id="chart_div"></div>
+    </div>
 </body>
 </html>
