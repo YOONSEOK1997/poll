@@ -24,12 +24,12 @@ String today = sdf.format(new Date());
 <html>
 <head>
 <meta charset="UTF-8">
-<title>설문 리스트</title>
+<title>설문조사</title>
 <link rel="stylesheet" type="text/css" href="/poll/css/poll.css?after">
 </head>
 <body>
 	<div class="container">
-		<h1>설문 리스트</h1>
+		<h1>설문조사</h1>
 
 		<table>
 			<tr>
